@@ -56,7 +56,9 @@ def create_centroids():
 
 if __name__ == "__main__":
     filename = "table_data.csv"
-    data_points = np.genfromtxt(filename, delimiter=",")
+    data_points = np.genfromtxt(
+        filename, delimiter=",", usecols=np.arange(0, 1))
+    print(data_points)
     centroids = create_centroids()
     total_iteration = 100
 

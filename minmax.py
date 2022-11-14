@@ -1,19 +1,18 @@
 import math
+n = int(input("enter no of nodes: "))
+scores = []
+for i in range(n):
+    scores.append(int(input("enter node value: ")))
 
 
-def minmax(cd, td, node, maxt, scr):
-    if cd == td:
-        return scr[node]
-    if maxt:
-        return max(minmax(cd + 1, td, node * 2, False, scr), minmax(cd + 1, td, node * 2 + 1, False, scr))
+def minmax(cur_depth, node_index, max_turn, scores, target_depth):
+    if cur_depth == target_depth:
+        return scores[node_index]
+    if max_turn:
+        return max(minmax(cur_depth + 1, node_index * 2, False, scores, target_depth), minmax(cur_depth + 1, node_index * 2 + 1, False, scores, target_depth))
     else:
-        return min(minmax(cd + 1, td, node * 2, True, scr), minmax(cd + 1, td, node * 2 + 1, True, scr))
+        return min(minmax(cur_depth + 1, node_index * 2, True, scores, target_depth), minmax(cur_depth + 1, node_index * 2 + 1, True, scores, target_depth))
 
 
-scr = [50, 73, 45, 60, 47]
-td = math.log(len(scr), 2)
-cd = 0
-nodev = 0
-maxt = True
-ans = minmax(cd, td, nodev, maxt, scr)
-print(ans)
+tree_depth = math.log(len(scores), 2)
+print(minmax(0, 0, True, scores, tree_depth))
