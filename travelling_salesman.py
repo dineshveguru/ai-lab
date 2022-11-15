@@ -23,7 +23,12 @@ def solution(graph, start):
     return min_cost
 
 
-graph = [[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]
+graph = []
+for i in range(v):
+    t = []
+    for j in range(v):
+        t.append(int(input(f"enter {i} {j} value: ")))
+    graph.append(t)
 s = 0
 
 print(solution(graph, s))
