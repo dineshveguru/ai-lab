@@ -1,4 +1,7 @@
 graph = {}
+bfs_visited = []
+dfs_visited = []
+queue = []
 
 choice = 0
 while choice != 1:
@@ -8,24 +11,31 @@ while choice != 1:
     print("enter 0 to enter new node and 1 to exit")
     choice = int(input("enter choice: "))
 
+print("DFS>")
 
-def dfs(graph, start):
-    visited = set()
-    if start not in visited:
-        visited.add(start)
-        print(start)
-        for i in graph[start]:
-            dfs(graph, i)
+
+def dfs(graph, node):
+    if node not in dfs_visited:
+        print(node, end=" ")
+        dfs_visited.append(node)
+        if node in graph.keys():
+            for neighbour in graph[node]:
+                dfs(graph, neighbour)
 
 
 def bfs(graph, start):
-    visited = set()
-    queue = []
-    if start not in visited:
-        visited.add(start)
-    for i in graph[start]:
-        queue.append(i)
-    bfs(graph, queue.pop(0))
+    print("BFS>")
+    bfs_visited.append(start)
+    queue.append(start)
+    while queue:
+        m = queue.pop(0)
+        print(m, end=" ")
+        if m in graph.keys():
+            for neighbour in graph[m]:
+                if neighbour not in bfs_visited:
+                    bfs_visited.append(neighbour)
+                    queue.append(neighbour)
 
 
+dfs(graph, list(graph.keys())[0])
 bfs(graph, list(graph.keys())[0])
