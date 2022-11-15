@@ -1,5 +1,4 @@
 import numpy as np
-import os
 
 
 def compute_euclidean_distance(point, centroid):
@@ -55,10 +54,25 @@ def create_centroids():
 
 
 if __name__ == "__main__":
-    filename = "table_data.csv"
-    data_points = np.genfromtxt(
-        filename, delimiter=",", usecols=np.arange(0, 1))
-    print(data_points)
+    # filename = "table_data.csv"
+    # data_points = np.genfromtxt(
+    #     filename, delimiter=",", usecols=np.arange(0, 1))
+    # print(data_points)
+    data_points = [[15, 16],
+                   [16, 18.5],
+                   [17, 20.2],
+                   [16.4, 17.12],
+                   [17.23, 18.12],
+                   [43, 43],
+                   [44.43, 45.212],
+                   [45.8, 54.23],
+                   [46.313, 43.123],
+                   [50.21, 46.3],
+                   [99, 99.22],
+                   [100.32, 98.123],
+                   [100.32, 97.423],
+                   [102, 93.23],
+                   [102.23, 94.23]]
     centroids = create_centroids()
     total_iteration = 100
 
